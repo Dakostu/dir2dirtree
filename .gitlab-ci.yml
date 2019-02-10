@@ -9,6 +9,5 @@ stages:
 
 linux-test:
         stage: deploy-tests
-        image: _/alpine
         script:
                 - ./dir2dirtree.sh
