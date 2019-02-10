@@ -7,7 +7,8 @@ before_script:
 stages:
         - deploy-tests
 
-shell-test:
+linux-test:
         stage: deploy-tests
+        image: _/alpine
         script:
                 - ./dir2dirtree.sh
