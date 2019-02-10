@@ -1,0 +1,13 @@
+before_script:
+        - mkdir test{1..5}
+        - touch test1/testFile
+        - touch test5/testi
+        - mkdir test3/pad{1..50}
+
+stages:
+        - deploy-tests
+
+shell-test:
+        stage: deploy-tests
+        script:
+                - ./dir2dirtree.sh
