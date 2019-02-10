@@ -4,10 +4,10 @@ function begin_traversing {
     
     if [ -z $2 ];
     then
-        local FOLDER="$PWD"
+        local FOLDER=$PWD
         local LEVEL=$1
     else
-        local FOLDER="$1"
+        local FOLDER=$1
         local LEVEL=$2
     fi
 
@@ -29,16 +29,15 @@ function begin_traversing {
 
 function traverse {
 
-    local FOLDER="$1"
+    local FOLDER=$1
     local LEVEL=$2
     	
 	for file in $(find $FOLDER -maxdepth 1 | sort); do                    
-        filename=$(basename $file)
-        if [ $filename != $(basename $FOLDER) ];        
+        if [ $(basename $file) != $(basename $FOLDER) ];        
         then
-        filename=$(basename $file | sed 's/[&_#$/]/\\&/g' | sed 's/\./$\\ldotp$/g' | sed 's/⁄/\//g')
+        filename=$(basename $file | sed 's/[&_#$/]/\\&/g; s/\./$\\ldotp$/g; s/⁄/\//g')
         echo "."$LEVEL $filename"."
-            if [ -d $file ] && [ ! -L $file ];
+            if [ -d $file ];
             then
                 traverse $file $((LEVEL+1))
             fi
@@ -47,7 +46,7 @@ function traverse {
 
 }
 
-SAVEIFS=$IFS
+TEMPIFS=$IFS
 IFS=$(echo -en "\n\b")
 begin_traversing $1 0
-IFS=$SAVEIFS
+IFS=$TEMPIFS
