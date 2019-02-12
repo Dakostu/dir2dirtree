@@ -7,7 +7,7 @@
 
 
 SED_FILTER_RULES_TEMP=$SED_FILTER_RULES
-SED_FILTER_RULES='s/[&_#$/]/\\&/g; s/ \./ $\\ldotp$/g; s/\. /$\\ldotp$ /g; s/⁄/\//g'
+SED_FILTER_RULES='s/[&_#$/]/\\&/g; s/\ \./ $\\ldotp$/g; s/\.\ /$\\ldotp$ /g; s/⁄/\//g'
 
 function begin_traversing {
     
